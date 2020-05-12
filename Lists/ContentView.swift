@@ -9,8 +9,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    var categories = [
+        Category(name: "Animals", image: "animals", feature: true),
+        Category(name: "Recipes", image: "recipes", feature: true),
+        Category(name: "Fashion", image: "fashion"),
+        Category(name: "Pictures", image: "pictures"),
+        Category(name: "Games", image: "games", feature: true),
+        Category(name: "Developed", image: "dev", feature: true),
+        Category(name: "Cars", image: "cars"),
+        Category(name: "Fitness", image: "sport"),
+        Category(name: "Events", image: "events")
+    ]
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            List {
+                ScrollView(.horizontal) {
+                    HStack(spacing: 25) {
+                        ForEach(categories) { category in
+                            if category.feature {
+                                CardFullImage(category: category)
+                            }
+                        }
+                    }.padding()
+                }.frame(height: 250)
+                ForEach(categories) { categorie in
+                    if !categorie.feature {
+                        CardHorizontalDetail(category: categorie)
+                    }
+                }
+            }
+            .navigationBarTitle(Text("Categories"))
+        }
     }
 }
 
