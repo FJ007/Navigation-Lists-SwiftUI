@@ -8,37 +8,22 @@
 
 import SwiftUI
 
-struct Category: Identifiable {
-    var id = UUID()
-    var name: String
-    var image: String
-    var feature: Bool = false
-}
-
-struct Categories: View {
-    
-    let animalCategory = Category(name: "Animals", image: "animals")
-    
+struct CategoriesStyleView: View {
+    let sanpleCategory = Category(name: "Animals", image: "animals")
     var body: some View {
         VStack {
-            Text("Cell Sample")
+            Text("Cell Samples")
                 .font(.system(.largeTitle, design: .rounded))
                 .bold()
                 .underline()
-            CardFullImage(category: animalCategory)
-            .padding(30)
-            CardHorizontalDetail(category: animalCategory)
+            CellFullImageView(category: sanpleCategory)
+                .padding(30)
+            CellDefaultView(category: sanpleCategory)
         }
     }
 }
 
-struct Categories_Previews: PreviewProvider {
-    static var previews: some View {
-        Categories()
-    }
-}
-
-struct CardFullImage: View {
+struct CellFullImageView: View {
     var category: Category
     var body: some View {
         ZStack {
@@ -59,7 +44,7 @@ struct CardFullImage: View {
     }
 }
 
-struct CardHorizontalDetail: View {
+struct CellDefaultView: View {
     var category: Category
     var body: some View {
         HStack {
@@ -74,5 +59,12 @@ struct CardHorizontalDetail: View {
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
         }
+    }
+}
+
+// MARK: - Preview
+struct Categories_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoriesStyleView()
     }
 }
